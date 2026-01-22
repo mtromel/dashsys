@@ -16,51 +16,65 @@
 </head>
 <body>
     <div class="container-fluid py-4">
-        <h1 class="text-center mb-4">Status de Entrega - GDB / China</h1>
+        <h1 class="text-center mb-4 text-white">Status de Entrega - GDB / China</h1>
         
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
             {% for m in maquinas %}
+            {# Criamos uma variável local para o último apontamento para facilitar a leitura #}
+            {% with ultimo_apontamento=m.apontamentos.last %}
             <div class="col">
-                <div class="card card-maquina shadow-sm">
+                <div class="card card-maquina shadow-sm h-100">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="card-title mb-0 text-info">{{ m.matricula_br }}</h5>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="card-title mb-0 text-info fw-bold">{{ m.matricula_br }}</h5>
                             <span class="badge {% if m.tipo == 'LASER' %}bg-danger{% else %}bg-primary{% endif %}">
-                                {{ m.tipo }}
+                                {{ m.get_tipo_display|default:m.tipo }}
                             </span>
                         </div>
                         
                         <div class="mb-3">
                             <div class="label-maquina">Cliente</div>
-                            <div class="valor-maquina text-truncate">{{ m.cliente }}</div>
+                            <div class="valor-maquina text-truncate text-white">{{ m.cliente }}</div>
                         </div>
 
-                        <div class="label-maquina mb-1">Status da Produção ({{ m.apontamento.total_geral|floatformat:1 }}%)</div>
-                        <div class="progress mb-3">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" 
-                                 role="progressbar" 
-                                 style="width: {{ m.apontamento.total_geral }}%">
+                        <div class="mb-3">
+                            <div class="label-maquina mb-1 d-flex justify-content-between">
+                                <span>Status da Produção</span>
+                                <span class="fw-bold text-success">{{ ultimo_apontamento.total_geral|default:0|floatformat:1 }}%</span>
+                            </div>
+                            <div class="progress" style="height: 12px; background-color: rgba(255,255,255,0.1);">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" 
+                                     role="progressbar" 
+                                     style="width: {{ ultimo_apontamento.total_geral|default:0 }}%"
+                                     aria-valuenow="{{ ultimo_apontamento.total_geral|default:0 }}" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-auto">
                             <div class="col-6">
                                 <div class="label-maquina">Chegada BR</div>
-                                <div class="valor-maquina text-warning">
+                                <div class="valor-maquina text-warning small">
                                     {{ m.data_chegada_br|date:"d/m/Y"|default:"Em trânsito" }}
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="label-maquina">Entrega Cliente</div>
-                                <div class="valor-maquina">{{ m.data_entrega|date:"d/m/Y" }}</div>
+                                <div class="valor-maquina text-white small">
+                                    {{ m.data_entrega|date:"d/m/Y"|default:"TBD" }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endwith %}
             {% empty %}
-            <div class="col-12 text-center mt-5">
-                <h3>Nenhuma máquina cadastrada para exibição.</h3>
+            <div class="col-12 text-center mt-5 text-white">
+                <i class="bi bi-exclamation-triangle display-1 text-warning"></i>
+                <h3 class="mt-3">Nenhuma máquina cadastrada para exibição.</h3>
             </div>
             {% endfor %}
         </div>
