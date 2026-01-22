@@ -19,7 +19,7 @@ class Maquina(models.Model):
         return f"{self.matricula_br} - {self.cliente}"
 
 class Apontamento(models.Model):
-    maquina = models.OneToOneField(Maquina, on_delete=models.CASCADE, related_name='apontamento')
+    maquina = models.ForeignKey(Maquina, on_delete=models.CASCADE, related_name='apontamento')
 
     # CAMPOS COMUNS (Presentes em ambos os tipos)
     ade_nr12 = models.BooleanField("Adequação NR-12", default=False)
