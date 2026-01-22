@@ -3,6 +3,7 @@ from .models import Maquina, Apontamento
 
 class ApontamentoInline(admin.StackedInline):
     model = Apontamento
+    extra = 0
     can_delete = False
     verbose_name = "Progresso de Produção"
     
@@ -13,6 +14,7 @@ class ApontamentoInline(admin.StackedInline):
         }),
         ('Específico: Dobradeira', {
             'fields': ('dob_start_eletrico', 'dob_regulagem', 'dob_teste_dobra'),
+            'classes': ('collapse',),
             'description': "Preencher apenas se for Dobradeira"
         }),
         ('Específico: Laser', {
@@ -21,6 +23,7 @@ class ApontamentoInline(admin.StackedInline):
                 'las_passagem_fibra', 'las_montagem_cab_elet', 'las_alimentacao',
                 'las_alin_cabecote', 'las_alin_bico', 'las_testes_corte'
             ),
+            'classes': ('collapse',),
             'description': "Preencher apenas se for Laser"
         }),
     )
