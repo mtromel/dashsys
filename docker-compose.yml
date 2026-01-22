@@ -3,7 +3,7 @@ services:
     image: postgres:15-alpine
     container_name: django_db
     volumes:
-      -postgres_data:/var/lib/postgresql/postgres_data
+      - postgres_data:/var/lib/postgresql/postgres_data
     env_file:
       - .env
     deploy:
