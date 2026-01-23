@@ -2,3 +2,13 @@
 
 {% block sidebar %}
 {% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+    /* Garante que o conteúdo principal ocupe a largura total sem a barra lateral */
+    #content { width: 100% !important; }
+    /* Esconde os links de Adicionar/Modificar na Home */
+    .addlink, .changelink { display: none !important; }
+</style>
+{% endblock %}

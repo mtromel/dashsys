@@ -1,0 +1,11 @@
+/* Esconde as colunas de "Adicionar" e "Modificar" apenas na tabela da página inicial */
+body.dashboard .addlink, 
+body.dashboard .changelink {
+    display: none !important;
+}
+
+/* Remove a borda e o espaçamento que sobra */
+body.dashboard td.add-another, 
+body.dashboard td.change {
+    display: none !important;
+}
