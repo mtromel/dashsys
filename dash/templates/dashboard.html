@@ -21,7 +21,7 @@
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
             {% for m in maquinas %}
             {# Criamos uma variável local para o último apontamento para facilitar a leitura #}
-            {% with ultimo_apontamento=m.apontamentos.last %}
+            {% with ultimo_apontamento=m.apontamento.last %}
             <div class="col">
                 <div class="card card-maquina shadow-sm h-100">
                     <div class="card-body">
