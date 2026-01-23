@@ -58,3 +58,11 @@ class MaquinaAdmin(admin.ModelAdmin):
     # Isso injeta o JavaScript na página do Admin da Máquina
     class Media:
         js = ('js/admin_filter.js',)
+
+    # Remove o botão "Adicionar" da página inicial do admin
+    def has_add_permission(self, request):
+        return False
+
+    # Remove o botão "Modificar" da página inicial do admin
+    def has_change_permission(self, request, obj=None):
+        return True # Mantemos True para que você ainda possa clicar no nome da máquina para editar
