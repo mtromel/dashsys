@@ -7,7 +7,7 @@
 {{ block.super }}
 <style>
     /* Garante que o conteúdo principal ocupe a largura total sem a barra lateral */
-    #content { width: 50% !important; }
+    {% comment %} #content { width: 50% !important; } {% endcomment %}
     /* Esconde os links de Adicionar/Modificar na Home */
     .addlink, .changelink { display: none !important; }
 </style>
