@@ -14,7 +14,7 @@ class ApontamentoInline(admin.StackedInline):
         }),
         ('Específico: Dobradeira', {
             'fields': ('dob_start_eletrico', 'dob_regulagem', 'dob_teste_dobra'),
-            'classes': ('collapse',),
+            'classes': ('group-especifico-dobradeira',),
             'description': "Preencher apenas se for Dobradeira"
         }),
         ('Específico: Laser', {
@@ -23,7 +23,7 @@ class ApontamentoInline(admin.StackedInline):
                 'las_passagem_fibra', 'las_montagem_cab_elet', 'las_alimentacao',
                 'las_alin_cabecote', 'las_alin_bico', 'las_testes_corte'
             ),
-            'classes': ('collapse',),
+            'classes': ('group-especifico-laser',),
             'description': "Preencher apenas se for Laser"
         }),
     )
@@ -44,3 +44,7 @@ class MaquinaAdmin(admin.ModelAdmin):
             return f"{obj.apontamento.total_geral:.1f}%"
         return "0%"
     get_progresso.short_description = 'Progresso Total'
+
+    # Isso injeta o JavaScript na página do Admin da Máquina
+    class Media:
+        js = ('js/admin_filter.js',)
