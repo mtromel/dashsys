@@ -8,7 +8,7 @@ admin.site.index_title = "Administração do Sistema de PCP"
 
 class ApontamentoInline(admin.StackedInline):
     model = Apontamento
-    extra = 1
+    extra = 0
     can_delete = False
     verbose_name = "Progresso de Produção"
     
