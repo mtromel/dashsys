@@ -10,7 +10,8 @@ class ApontamentoInline(admin.StackedInline):
     model = Apontamento
     extra = 0
     can_delete = False
-    verbose_name = "Progresso de Produção"
+    verbose_name = "Etapa de Produção"
+    verbose_name_plural = "Etapas de produção"
     
     # Organizamos os campos em grupos visuais (fieldsets)
     fieldsets = (
@@ -61,10 +62,6 @@ class MaquinaAdmin(admin.ModelAdmin):
         if ultimo:
             return f"{ultimo.total_geral:.1f}%"
         return "0%"
-    
-        # if hasattr(obj, 'apontamento'):
-        #     return f"{obj.apontamento.total_geral:.1f}%"
-        # return "0%"
     
     get_progresso.short_description = 'Progresso Total'
 

@@ -76,7 +76,7 @@ class Apontamento(models.Model):
         return sum(grupos) / len(grupos) if grupos else 0
     
     def __str__(self):
-        return f"Progresso - {self.maquina.matricula_br}"
+        return f" {self.maquina.matricula_br}"
 
 @receiver(post_save, sender=Maquina)
 def criar_apontamento(sender, instance, created, **kwargs):
