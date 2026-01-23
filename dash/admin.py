@@ -1,6 +1,11 @@
 from django.contrib import admin
 from .models import Maquina, Apontamento
 
+
+admin.site.site_title = "Dashboard GDB"
+admin.site.site_header = "Gerenciador do Dashboard"
+admin.site.index_title = "Administração do Sistema de PCP"
+
 class ApontamentoInline(admin.StackedInline):
     model = Apontamento
     extra = 0
