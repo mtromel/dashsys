@@ -74,6 +74,9 @@ class Apontamento(models.Model):
         """Calcula a média simples dos percentuais dos grupos (pesos iguais)."""
         grupos = self.progresso_por_grupo.values()
         return sum(grupos) / len(grupos) if grupos else 0
+    
+    def __str__(self):
+        return f"Progresso - {self.maquina.matricula_br}"
 
 @receiver(post_save, sender=Maquina)
 def criar_apontamento(sender, instance, created, **kwargs):

@@ -8,7 +8,7 @@ admin.site.index_title = "Administração do Sistema de PCP"
 
 class ApontamentoInline(admin.StackedInline):
     model = Apontamento
-    extra = 0
+    extra = 1
     can_delete = False
     verbose_name = "Progresso de Produção"
     
@@ -32,6 +32,14 @@ class ApontamentoInline(admin.StackedInline):
             'description': "Preencher apenas se for Laser"
         }),
     )
+
+    def get_queryset(self, request):
+        # Filtra para exibir apenas o último apontamento realizado
+        qs = super().get_queryset(request)
+        last_id = qs.values_list('id', flat=True).last()
+        if last_id:
+            return qs.filter(id=last_id)
+        return qs
 
 @admin.register(Maquina)
 class MaquinaAdmin(admin.ModelAdmin):
