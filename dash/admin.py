@@ -38,11 +38,21 @@ class MaquinaAdmin(admin.ModelAdmin):
     # Inclui o formulário de apontamento dentro da tela da máquina
     inlines = [ApontamentoInline]
 
+    def get_queryset(self, request):
+        # O prefetch_related carrega os apontamentos de uma só vez na memória
+        return super().get_queryset(request).prefetch_related('apontamento')
+
     def get_progresso(self, obj):
+        ultimo = obj.apontamento.last()
         # Mostra o totalizador direto na lista de máquinas
-        if hasattr(obj, 'apontamento'):
-            return f"{obj.apontamento.total_geral:.1f}%"
+        if ultimo:
+            return f"{ultimo.total_geral:.1f}%"
         return "0%"
+    
+        # if hasattr(obj, 'apontamento'):
+        #     return f"{obj.apontamento.total_geral:.1f}%"
+        # return "0%"
+    
     get_progresso.short_description = 'Progresso Total'
 
     # Isso injeta o JavaScript na página do Admin da Máquina
