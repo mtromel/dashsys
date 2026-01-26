@@ -45,7 +45,7 @@ class ApontamentoInline(admin.StackedInline):
 @admin.register(Maquina)
 class MaquinaAdmin(admin.ModelAdmin):
     # O que aparece na lista principal
-    list_display = ('matricula_br', 'cliente', 'tipo', 'data_entrega', 'exibir_no_dashboard' 'get_progresso')
+    list_display = ('matricula_br', 'cliente', 'tipo', 'data_entrega', 'exibir_no_dashboard', 'get_progresso')
     list_editable = ('exibir_no_dashboard',)
     list_filter = ('tipo', 'data_entrega')
     search_fields = ('matricula_br', 'cliente')
