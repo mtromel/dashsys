@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from datetime import date
 
 class Maquina(models.Model):
     TIPO_CHOICES = [
@@ -14,9 +15,17 @@ class Maquina(models.Model):
     data_chegada_br = models.DateField("Data de Chegada BR", null=True, blank=True)
     cliente = models.CharField("Cliente", max_length=100)
     tipo = models.CharField("Tipo de Máquina", max_length=15, choices=TIPO_CHOICES)
+    exibir_no_dashboard = models.BooleanField(default=True, verbose_name="Exibir na TV?")
 
     def __str__(self):
         return f"{self.matricula_br} - {self.cliente}"
+    
+    # Lógica para destacar atraso
+    @property
+    def esta_atrasada(self):
+        if self.data_entrega and self.data_entrega < date.today():
+            return True
+        return False
 
 class Apontamento(models.Model):
     maquina = models.ForeignKey(Maquina, on_delete=models.CASCADE, related_name='apontamento')
