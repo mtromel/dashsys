@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from dash.views import dashboard_pcp
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,3 +27,10 @@ urlpatterns = [
 admin.site.site_header = "GDB Metalmachinery"
 admin.site.site_title = "Admin GDB"
 admin.site.index_title = "Controle de Produção PCP"
+
+if not settings.DEBUG:
+    from django.views.static import serve
+    import re
+    urlpatterns += [
+        path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+    ]
