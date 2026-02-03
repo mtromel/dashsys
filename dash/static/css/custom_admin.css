@@ -9,3 +9,12 @@ body.dashboard td.add-another,
 body.dashboard td.change {
     display: none !important;
 }
+
+/* dashsys/static/css/custom_admin.css */
+#header #branding h1 {
+    background: url('../img/logo.jpg') no-repeat;
+    background-size: contain;
+    text-indent: -9999px; /* Esconde o texto "Django Administration" */
+    width: 200px;
+    height: 50px;
+}

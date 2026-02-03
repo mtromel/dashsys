@@ -19,8 +19,16 @@
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-dark bg-dark mb-4 shadow">
+        <div class="container-fluid d-flex align-items-center">
+            <img src="{% static "img/logo.jpg" %}}" alt= "Logo GDB" height="50" class="d-inline-block align-text-top me-3">
+            <span class="navbar-brand mb-0 h1">Status de Entrega de Máquinas</span>
+
+            <div class="text-white ms-auto" id="current-time"></div>
+        </div>
+    </nav>
     <div class="container-fluid py-4">
-        <h1 class="text-center mb-4 text-white">Status de Entrega de Máquinas</h1>
+        {% comment %} <h1 class="text-center mb-4 text-white">Status de Entrega de Máquinas</h1> {% endcomment %}
         
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-3">
             {% for m in maquinas %}
