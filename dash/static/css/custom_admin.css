@@ -11,7 +11,7 @@ body.dashboard td.change {
 }
 
 /* dashsys/static/css/custom_admin.css */
-#header #branding h1 {
+#header #branding {
     background: url('/static/img/logo.png') no-repeat;
     background-size: contain;
     display: block;
