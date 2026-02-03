@@ -12,7 +12,7 @@ body.dashboard td.change {
 
 /* dashsys/static/css/custom_admin.css */
 #header #branding h1 {
-    background: url('../img/logo.jpg') no-repeat;
+    background: url('../img/logo.png') no-repeat;
     background-size: contain;
     text-indent: -9999px; /* Esconde o texto "Django Administration" */
     width: 200px;
