@@ -3,19 +3,19 @@ from .models import Maquina, Apontamento
 
 
 admin.site.site_title = "Dashboard GDB"
-# admin.site.site_header = "Gerenciador do Dashboard"
+admin.site.site_header = "Gerenciador do Dashboard"
 admin.site.index_title = "Administração do Sistema de PCP"
 
-class GDBAdminSite(admin.AdminSite):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.site_header = "Gerenciador do Dashboard"
+# class GDBAdminSite(admin.AdminSite):
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.site_header = "Gerenciador do Dashboard"
     
-    @property
-    def media(self):
-        return admin.Media(css={'all': ('css/custom_admin.css',)})
+#     @property
+#     def media(self):
+#         return admin.Media(css={'all': ('css/custom_admin.css',)})
 
-admin.site.__class__ = GDBAdminSite
+# admin.site.__class__ = GDBAdminSite
 
 class ApontamentoInline(admin.StackedInline):
     model = Apontamento
