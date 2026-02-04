@@ -12,7 +12,7 @@ body.dashboard td.change {
 
 /* Substitui o texto padrão do Django Admin pela logo GDB */
 #site-name a, #site-name {
-    background: url('/img/logo.png') no-repeat !important;
+    background: url('/static/img/logo.png') no-repeat !important;
     background-size: contain !important;
     display: block !important;
     text-indent: -9999px !important; /* Esconde o texto "Django Administration" */
