@@ -11,13 +11,20 @@ body.dashboard td.change {
 }
 
 /* Substitui o texto padrão do Django Admin pela logo GDB */
-#site-name a, #site-name {
+#header #branding #site-name a,
+#header #branding #site-name {
     background: url('/static/img/logo.png') no-repeat !important;
     background-size: contain !important;
     display: block !important;
     text-indent: -9999px !important; /* Esconde o texto "Django Administration" */
     width: 200px !important;
     height: 50px !important;
+    margin: 0 !important;
+}
+
+#site-name {
+    line-height: 0 !important;
+    font-size: 0 !important;
 }
 
 #branding {

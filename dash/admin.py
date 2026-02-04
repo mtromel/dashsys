@@ -3,7 +3,7 @@ from .models import Maquina, Apontamento
 
 
 admin.site.site_title = "Dashboard GDB"
-admin.site.site_header = "Gerenciador do Dashboard"
+# admin.site.site_header = "Gerenciador do Dashboard"
 admin.site.index_title = "Administração do Sistema de PCP"
 
 class GDBAdminSite(admin.AdminSite):
@@ -13,7 +13,7 @@ class GDBAdminSite(admin.AdminSite):
     
     @property
     def media(self):
-        return admin.Media(css={'all': ('/static/css/custom_admin.css',)})
+        return admin.Media(css={'all': ('css/custom_admin.css',)})
 
 admin.site.__class__ = GDBAdminSite
 
