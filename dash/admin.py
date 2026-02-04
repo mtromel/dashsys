@@ -13,7 +13,7 @@ class GDBAdminSite(admin.AdminSite):
     
     @property
     def media(self):
-        return admin.Media(css={'all': ('css/custom_admin.css',)})
+        return admin.Media(css={'all': ('/static/css/custom_admin.css',)})
 
 admin.site.__class__ = GDBAdminSite
 
