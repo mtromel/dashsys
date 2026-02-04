@@ -24,9 +24,9 @@ urlpatterns = [
     path('dashboard/', dashboard_pcp, name='dashboard'),
 ]
 
-admin.site.site_header = "GDB Metalmachinery"
-admin.site.site_title = "Admin GDB"
-admin.site.index_title = "Controle de Produção PCP"
+# admin.site.site_header = "GDB Metalmachinery"
+# admin.site.site_title = "Admin GDB"
+# admin.site.index_title = "Controle de Produção PCP"
 admin.autodiscover()
 admin.site.enable_nav_sidebar = True
 
