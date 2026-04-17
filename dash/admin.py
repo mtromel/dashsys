@@ -21,28 +21,28 @@ class ApontamentoInline(admin.StackedInline):
     model = Apontamento
     extra = 0
     can_delete = False
-    verbose_name = "Etapa de Produção"
-    verbose_name_plural = "Etapas de produção"
+    verbose_name = "Etapa de Entrega"
+    verbose_name_plural = "Etapas de entrega"
     
     # Organizamos os campos em grupos visuais (fieldsets)
     fieldsets = (
-        ('Comum a todos', {
-            'fields': ('ade_nr12', 'vistoria_final')
+        ('Marque as etapas concluídas', {
+            'fields': ('data_entrega_ch', 'data_embarque', 'data_chegada_br', 'testes', 'carregamento')
         }),
-        ('Específico: Dobradeira', {
-            'fields': ('dob_start_eletrico', 'dob_regulagem', 'dob_teste_dobra'),
-            'classes': ('group-especifico-dobradeira',),
-            'description': "Preencher apenas se for Dobradeira"
-        }),
-        ('Específico: Laser', {
-            'fields': (
-                'las_nivelamento', 'las_montagem_cabecote', 'las_posicionamento_perif',
-                'las_passagem_fibra', 'las_montagem_cab_elet', 'las_alimentacao',
-                'las_alin_cabecote', 'las_alin_bico', 'las_testes_corte'
-            ),
-            'classes': ('group-especifico-laser',),
-            'description': "Preencher apenas se for Laser"
-        }),
+        # ('Específico: Dobradeira', {
+        #     'fields': ('dob_start_eletrico', 'dob_regulagem', 'dob_teste_dobra'),
+        #     'classes': ('group-especifico-dobradeira',),
+        #     'description': "Preencher apenas se for Dobradeira"
+        # }),
+        # ('Específico: Laser', {
+        #     'fields': (
+        #         'las_nivelamento', 'las_montagem_cabecote', 'las_posicionamento_perif',
+        #         'las_passagem_fibra', 'las_montagem_cab_elet', 'las_alimentacao',
+        #         'las_alin_cabecote', 'las_alin_bico', 'las_testes_corte'
+        #     ),
+        #     'classes': ('group-especifico-laser',),
+        #     'description': "Preencher apenas se for Laser"
+        # }),
     )
 
     def get_queryset(self, request):
@@ -56,9 +56,9 @@ class ApontamentoInline(admin.StackedInline):
 @admin.register(Maquina)
 class MaquinaAdmin(admin.ModelAdmin):
     # O que aparece na lista principal
-    list_display = ('matricula_br', 'cliente', 'tipo', 'data_entrega', 'exibir_no_dashboard', 'get_progresso')
+    list_display = ('matricula_br', 'cliente', 'modelo_maq', 'data_entrega_cliente', 'exibir_no_dashboard', 'get_progresso')
     list_editable = ('exibir_no_dashboard',)
-    list_filter = ('tipo', 'data_entrega')
+    list_filter = ('tipo', 'data_entrega_cliente')
     search_fields = ('matricula_br', 'cliente')
     
     # Inclui o formulário de apontamento dentro da tela da máquina
