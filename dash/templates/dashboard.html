@@ -75,7 +75,7 @@
                             <div class="label-maquina mb-1 d-flex justify-content-between">
                                 <span>
                                     Status da Entrega
-                                    {% if ultimo_apontamento.total_geral <= 20 %}
+                                    {% if ultimo_apontamento.total_geral == 20 %}
                                         <span class='badge bg-success'>Entrega China realizada</span>
                                     {% elif ultimo_apontamento.total_geral > 20 and ultimo_apontamento.total_geral <= 40 %}
                                         <span class='badge bg-success'>Embarque realizado</span>
