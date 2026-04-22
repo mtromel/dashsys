@@ -44,7 +44,7 @@
             {% with ultimo_apontamento=m.apontamento.last %}
             <div class="col">
                 <div class="card card-maquina shadow-sm h-100 
-                    {% if m.esta_atrasada %}
+                    {% if m.esta_atrasada and not ultimo_apontamento.total_geral == 100 %}
                         border-danger border-3
                     {% elif ultimo_apontamento.total_geral == 100 %}
                         border-success border-3
