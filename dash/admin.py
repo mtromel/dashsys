@@ -20,6 +20,7 @@ admin.site.index_title = "Administração do Sistema de PCP"
 class ApontamentoInline(admin.StackedInline):
     model = Apontamento
     extra = 0
+    max_num = 1
     can_delete = False
     verbose_name = "Etapa de Entrega"
     verbose_name_plural = "Etapas de entrega"
@@ -48,9 +49,16 @@ class ApontamentoInline(admin.StackedInline):
     def get_queryset(self, request):
         # Filtra para exibir apenas o último apontamento realizado
         qs = super().get_queryset(request)
-        last_id = qs.values_list('id', flat=True).last()
+        object_id = request.resolver_match.kwargs.get('object_id')
+
+        if object_id:
+            last_id = qs.filter(maquina_id=object_id).order_by('-id').first()
+        
+        print(f'DEBUG: conteúdo de last_id após order_by: {last_id.id}')
+        
         if last_id:
-            return qs.filter(id=last_id)
+            return qs.filter(id=last_id.id)
+        
         return qs
 
 @admin.register(Maquina)
