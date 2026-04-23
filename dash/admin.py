@@ -4,7 +4,7 @@ from .models import Maquina, Apontamento
 
 admin.site.site_title = "Dashboard GDB"
 admin.site.site_header = "Gerenciador do Dashboard"
-admin.site.index_title = "Administração do Sistema de PCP"
+admin.site.index_title = "Administração do Sistema de Controle de Entregas"
 
 # class GDBAdminSite(admin.AdminSite):
 #     def __init__(self, *args, **kwargs):
