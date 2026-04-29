@@ -64,10 +64,10 @@ class ApontamentoInline(admin.StackedInline):
 @admin.register(Maquina)
 class MaquinaAdmin(admin.ModelAdmin):
     # O que aparece na lista principal
-    list_display = ('matricula_br', 'cliente', 'modelo_maq', 'data_entrega_cliente', 'exibir_no_dashboard', 'get_progresso')
+    list_display = ('matricula_br', 'cliente', 'ordem_compra', 'data_entrega_cliente', 'exibir_no_dashboard', 'get_progresso')
     list_editable = ('exibir_no_dashboard',)
     list_filter = ('tipo', 'data_entrega_cliente')
-    search_fields = ('matricula_br', 'cliente')
+    search_fields = ('matricula_br', 'cliente', 'ordem_compra')
     
     # Inclui o formulário de apontamento dentro da tela da máquina
     inlines = [ApontamentoInline]

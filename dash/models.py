@@ -12,6 +12,7 @@ class Maquina(models.Model):
     matricula_br = models.CharField("Matrícula GDB", max_length=25, unique=True)
     modelo_maq = models.CharField("Modelo da Máquina", max_length=60, null=True, blank=True)
     cliente = models.CharField("Cliente", max_length=100)
+    ordem_compra = models.CharField("Ordem de Compra", max_length=60, null=True, blank=True)
     data_entrega_ch = models.DateField("Data de Entrega Estimada CH", default=None)
     data_embarque = models.DateField("Data de Embarque CH", default=None)
     data_chegada_br = models.DateField("Data de Chegada BR", default=None)
