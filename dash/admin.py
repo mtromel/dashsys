@@ -54,12 +54,12 @@ class ApontamentoInline(admin.StackedInline):
         if object_id:
             last_id = qs.filter(maquina_id=object_id).order_by('-id').first()
         
-        print(f'DEBUG: conteúdo de last_id após order_by: {last_id.id}')
+            if last_id:
+                return qs.filter(id=last_id.id)
+            
+            return qs.none()
         
-        if last_id:
-            return qs.filter(id=last_id.id)
-        
-        return qs
+        return qs.none()
 
 @admin.register(Maquina)
 class MaquinaAdmin(admin.ModelAdmin):
